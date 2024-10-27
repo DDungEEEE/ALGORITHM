@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Example example = new Example();
+        SmartPhone smartPhone= new SmartPhone("손원익");
 
-        int sum = example.sum(1, 2, 3);
-        System.out.println("sum = " + sum);
+        smartPhone.turnOn();
+        smartPhone.internetSearch();
+        smartPhone.turnOff();
+
 
     }
 }
