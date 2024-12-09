@@ -1,16 +1,24 @@
 package org.example;
 
-import java.util.Scanner;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        SmartPhone smartPhone= new SmartPhone("손원익");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        smartPhone.turnOn();
-        smartPhone.internetSearch();
-        smartPhone.turnOff();
+        int count = Integer.parseInt(bufferedReader.readLine());
+        StringTokenizer ts;
 
+        for(int i = 0; i <count; i++){
+           ts = new StringTokenizer(bufferedReader.readLine(), " ");
+           bufferedWriter.write((Integer.parseInt(ts.nextToken()) + Integer.parseInt(ts.nextToken()))+ "\n");
+        }
+        bufferedReader.close();;
+        bufferedWriter.flush();;
+        bufferedWriter.close();
 
     }
 }
