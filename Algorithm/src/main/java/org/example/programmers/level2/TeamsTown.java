@@ -1,8 +1,8 @@
-package org.example.programmers;
+package org.example.programmers.level2;
 
 import java.util.Stack;
 
-public class Level2_TeamsTown {
+public class TeamsTown {
     public static void main(String[] args) {
         String s = "baabaa";
         String s2 = "cdcd";
