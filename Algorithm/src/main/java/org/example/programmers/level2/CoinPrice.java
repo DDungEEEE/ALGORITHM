@@ -1,4 +1,4 @@
-package org.example.baekjoon.level2;
+package org.example.programmers.level2;
 
 import java.util.Arrays;
 import java.util.HashMap;
