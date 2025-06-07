@@ -3,8 +3,7 @@ package org.example.study.queue;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class
-요세푸스문제 {
+public class QuePractice {
     public static void main(String[] args) {
         solution(5, 2);
     }
