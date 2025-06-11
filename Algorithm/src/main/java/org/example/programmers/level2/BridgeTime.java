@@ -7,6 +7,7 @@ import java.util.Queue;
 class Solution {
 
     public int solution(int bridgeLength, int weight, int[] truckWeights) {
+
         int time = 0;
         int currentWeight = 0;
 
@@ -41,7 +42,5 @@ class Solution {
         return time;
     }
 
-        return time;
-    }
 }
 
