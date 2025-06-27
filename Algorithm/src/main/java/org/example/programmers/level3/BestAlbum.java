@@ -50,6 +50,7 @@ public class BestAlbum {
                 answer.add(songs.get(1)[0]);
         }
 
+
         return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
