@@ -1,12 +1,16 @@
-package org.example.baekjoon.백트래킹.N과M1;
+package org.example.baekjoon.백트래킹.N과M2;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    private static int[] result;
-    static boolean[] visited;
-    static int M;
     static int N;
+    static int M;
+    static int[] result;
+    static boolean[] visited;
+    static Map<Integer, Boolean> isVisited = new HashMap<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -24,28 +28,31 @@ public class Main {
         visited = new boolean[N + 1];
 
         backTracking(0, result);
-
     }
+
     static void backTracking(int depth, int[] arr){
-
         if(depth == M){
+            isVisited.put(arr[0], true);
 
-            for(int i : arr){
-                System.out.print(i + " ");
-            }
+            Arrays.stream(arr)
+//                    .sorted()
+                    .forEach(i -> System.out.print(i + " "));
             System.out.println();
             return;
         }
 
         for(int i = 1; i <= N; i++){
-            if(visited[i])
+
+
+            if(visited[i] || isVisited.get(i) != null)
                 continue;
             result[depth] = i;
-            // 이미 사용된 숫자 기록
+            // 사용된 숫자 기록
             visited[i] = true;
             backTracking(depth + 1, result);
             // 이전의 i값의 재귀가 끝났으므로 방문 기록 제거
             visited[i] = false;
+
         }
     }
 }
