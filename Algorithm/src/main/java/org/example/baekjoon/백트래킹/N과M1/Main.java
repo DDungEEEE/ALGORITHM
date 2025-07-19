@@ -23,29 +23,22 @@ public class Main {
         result = new int[M];
         visited = new boolean[N + 1];
 
-        backTracking(0, result);
+        backTracking(0, 1);
 
     }
-    static void backTracking(int depth, int[] arr){
+    static void backTracking(int depth, int start){
 
         if(depth == M){
-
-            for(int i : arr){
+            for(int i : result){
                 System.out.print(i + " ");
             }
             System.out.println();
             return;
         }
 
-        for(int i = 1; i <= N; i++){
-            if(visited[i])
-                continue;
+        for(int i = start; i <= N; i++){
             result[depth] = i;
-            // 이미 사용된 숫자 기록
-            visited[i] = true;
-            backTracking(depth + 1, result);
-            // 이전의 i값의 재귀가 끝났으므로 방문 기록 제거
-            visited[i] = false;
+            backTracking(depth + 1, i );
         }
     }
 }

@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        // 체스판 크기
         N = scanner.nextInt();
 
         board = new boolean[N][N];
@@ -17,36 +18,29 @@ public class Main {
         System.out.println(count);
     }
 
-    static void backTracking(int row) {
-        if (row == N) {
-            count++;
+    public static void backTracking(int depth){
+        //모든 행에 퀸을 배치했을 때
+        if(depth == N){
+            count ++;
             return;
         }
 
-        for (int col = 0; col < N; col++) {
-            if (isSafe(row, col)) {
-                board[row][col] = true; // 퀸 놓기
-                backTracking(row + 1);
-                board[row][col] = false; // 퀸 제거
+        // 한 행에 하나씩 놓을거다.
+        for(int i = 0; i < N; i ++){
+            //퀸을 놓을 수 있을 때
+            if(canPutQueen(i, depth)){
+                // 체스판에 퀸을 놓는다.
+                board[i][depth] = true;
+                backTracking(depth + 1);
+                board[i][depth] = false;
             }
+
         }
     }
 
-    // 현재 행, 열 위치에 퀸을 놓아도 괜찮은지 검사
-    static boolean isSafe(int row, int col) {
-
-        for (int i = 0; i < row; i++) {
-            if (board[i][col]) return false;
-        }
-
-        for (int i = 1; row - i >= 0 && col - i >= 0; i++) {
-            if (board[row - i][col - i]) return false;
-        }
-
-        for (int i = 1; row - i >= 0 && col + i < N; i++) {
-            if (board[row - i][col + i]) return false;
-        }
-
-        return true;
+    public static boolean canPutQueen(int col, int row){
+        for(int i = )
     }
+
+
 }
