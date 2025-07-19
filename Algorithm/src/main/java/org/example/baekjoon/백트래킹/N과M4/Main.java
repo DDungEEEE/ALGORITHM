@@ -1,8 +1,6 @@
-package org.example.baekjoon.백트래킹.N과M2;
+package org.example.baekjoon.백트래킹.N과M4;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -16,10 +14,7 @@ public class Main {
 
         String[] nums = input.split(" ");
 
-        // 1부터 N까지 자연수
         N = Integer.parseInt(nums[0]);
-
-        // 중복 없이 M 개를 고른 수열
         M = Integer.parseInt(nums[1]);
 
         result = new int[M];
@@ -29,9 +24,9 @@ public class Main {
 
     static void backTracking(int start, int depth, int[] arr){
         if(depth == M){
-            Arrays.stream(arr)
-                    .sorted()
-                    .forEach(i -> System.out.print(i + " "));
+            for (int i = 0; i < M; i++) {
+                System.out.print(arr[i] + " ");
+            }
 
             System.out.println();
             return;
@@ -40,7 +35,7 @@ public class Main {
         for(int i = start; i <= N; i++){
             result[depth] = i;
 
-            backTracking(i + 1, depth + 1, result);
+            backTracking(i, depth + 1, result);
         }
     }
 }
