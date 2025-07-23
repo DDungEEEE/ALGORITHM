@@ -28,18 +28,35 @@ public class Main {
         // 한 행에 하나씩 놓을거다.
         for(int i = 0; i < N; i ++){
             //퀸을 놓을 수 있을 때
-            if(canPutQueen(i, depth)){
+            if(canPutQueen(depth, i)){
                 // 체스판에 퀸을 놓는다.
-                board[i][depth] = true;
+                board[depth][i] = true;
                 backTracking(depth + 1);
-                board[i][depth] = false;
+                board[depth][i] = false;
             }
 
         }
     }
 
-    public static boolean canPutQueen(int col, int row){
-        for(int i = )
+    public static boolean canPutQueen(int row, int col){
+        for(int i = 0; i < row; i++){
+            if(board[i][col]){
+                return false;
+            }
+        }
+        for(int i = row, j = col; i >= 0 && j >= 0; i--, j--){
+            if(board[i][j]){
+                return false;
+            }
+        }
+
+        for(int i = row, j = col; i >= 0 && j < N; i--, j++){
+            if(board[i][j]){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 

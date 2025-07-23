@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     static int[][] board = new int[9][9];
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // 입력 받기
@@ -16,63 +17,24 @@ public class Main {
             }
         }
 
-        solve(0, 0);
     }
 
-    static void solve(int row, int col) {
-        if (col == 9) {
-            solve(row + 1, 0);
-            return;
-        }
-
-        if (row == 9) {
-            printBoard();
-            System.exit(0);
-        }
-
-        if (board[row][col] == 0) {
-            for (int num = 1; num <= 9; num++) {
-                if (isValid(row, col, num)) {
-                    board[row][col] = num;
-                    solve(row, col + 1);
-                    board[row][col] = 0;
+    public static void sudoku(int depth){
+        // 모든 행의 스도쿠를 다 채웠을 경우
+        if(depth == 9){
+            for(int i = 0; i < 9; i ++){
+                for (int j = 0; j < 9; j++){
+                    sb.append(board[i][j]);
                 }
+                sb.append("/n");
             }
-        } else {
-            solve(row, col + 1);
+            System.out.println(sb.toString());
         }
     }
 
-    static boolean isValid(int row, int col, int num) {
-        // 행 검사
-        for (int i = 0; i < 9; i++) {
-            if (board[row][i] == num) return false;
-        }
-
-        // 열 검사
-        for (int i = 0; i < 9; i++) {
-            if (board[i][col] == num) return false;
-        }
-
-        // 3x3 박스 검사
-        int startRow = (row / 3) * 3;
-        int startCol = (col / 3) * 3;
-
-        for (int i = startRow; i < startRow + 3; i++) {
-            for (int j = startCol; j < startCol + 3; j++) {
-                if (board[i][j] == num) return false;
-            }
-        }
-
-        return true;
-    }
-
-    static void printBoard() {
-        for (int[] row : board) {
-            for (int num : row) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
+    public static boolean canPutNum(int col, int row, int num){
+        for(int i = col; i < 9; i++){
+            
         }
     }
 }
