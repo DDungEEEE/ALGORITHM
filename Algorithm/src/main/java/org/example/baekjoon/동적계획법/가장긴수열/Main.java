@@ -14,29 +14,16 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int result = 0;
+        int[] dp = new int[N];
 
-        for(int i = 0; i < N; i++){
-            List<Integer> lcs = new ArrayList<>();
-            int cur = arr[i];
-            lcs.add(cur);
-
-            Map<Integer, Boolean> nums= new HashMap<>();
-            nums.put(cur, true);
-            for(int j = 0; j < N; j++){
-                int next = arr[j];
-
-                if(nums.get(next)){
-                    continue;
+        for (int i = 0; i < N; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (arr[j] < arr[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
-
-                nums.put(next, true);
-                if(cur < next) {
-                    lcs.add(next);
-                }
-            }
-            result = Math.max(result, lcs.size());
+              }
         }
-        System.out.println(result);
+        System.out.println(Arrays.stream(dp).max().getAsInt());
     }
 }
