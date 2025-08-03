@@ -5,40 +5,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static int max = Integer.MIN_VALUE;
     public static int[][] result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-
-        int[] nums = new int[N];
+        
         result = new int[N][1];
 
-        String[] inputNum = br.readLine().split(" ");
+        String[] input = br.readLine().split(" ");
 
-        for(int i = 0; i < N; i++){
-            nums[i] = Integer.parseInt(inputNum[i]);
+        int[] sum = new int[N];
+        sum[0] = Integer.parseInt(input[0]);
+
+        int currSum = sum[0];
+        int maxSum  = sum[0];
+
+        for (int i = 1; i < N; i++) {
+            int num = Integer.parseInt(input[i]);
+
+            sum[i] = Math.max(num, sum[i - 1] + num);
+            currSum = sum[i];
+            // 전체 최댓값 갱신
+            maxSum = Math.max(maxSum, currSum);
         }
 
-        for(int i = 0; i < N - 1; i ++){
-            result[i][0] = nums[i] + nums[i + 1];
-            max = Math.max(result[i][0], max);
-
-            for(int j = i + 2; j < N; j ++){
-                int sum = result[i][0] + nums[j];
-
-                result[i][0] = sum;
-
-                max = Math.max(result[i][0], max);
-
-            }
-            System.out.println();
-        }
-
-        System.out.println(max);
+        System.out.println(maxSum);
 
     }
-
-
 }
