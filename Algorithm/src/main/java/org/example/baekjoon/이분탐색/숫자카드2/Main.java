@@ -26,36 +26,39 @@ public class Main {
         st = new StringTokenizer(br.readLine());
 
         for(int i = 0; i < M; i++){
-            binarySearch(arrA, Integer.parseInt(st.nextToken()));
+            int target = Integer.parseInt(st.nextToken());
+            int count = upperBound(arrA, target) - lowerBound(arrA, target);
+            sb.append(count).append(" ");
         }
 
         System.out.println(sb.toString());
 
     }
-    static void binarySearch(int[] arr, int target){
-        int left = 0;
-        int right = arr.length - 1;
-        int count = 0;
-
-        while (left <= right){
+    // target 이상 처음 나오는 인덱스
+    static int lowerBound(int[] arr, int target) {
+        int left = 0, right = arr.length;
+        while (left < right) {
             int mid = (left + right) / 2;
-
-            if (arr[mid] == target){
-
-                count++;
-                if(mid - 1 >= 0 && arr[mid - 1] == target){
-                    right -= 1;
-                }else if(mid + 1 <= arr.length - 1 && arr[mid + 1] == target){
-                    left += 1;
-                }else{
-                    break;
-                }
-            }else if(arr[mid] < target){
+            if (arr[mid] < target) {
                 left = mid + 1;
-            }else{
-                right = mid - 1;
+            } else {
+                right = mid;
             }
         }
-        sb.append(count).append("\n");
+        return left;
+    }
+
+    // target 초과 처음 나오는 인덱스
+    static int upperBound(int[] arr, int target) {
+        int left = 0, right = arr.length;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] <= target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
     }
 }
