@@ -19,6 +19,7 @@ public class Main {
         for(int i = 0; i < N; i++){
             plus[i] = 1;
 
+
             for(int j = 0; j < i; j++){
                 if(arr[i] > arr[j]){
                     plus[i] = Math.max(plus[i], plus[j] + 1);
