@@ -24,6 +24,7 @@ public class Solution {
 
         for(int i = 0; i < prices.length; i++){
             // 가격이 작아질 시에
+
             while(!store.isEmpty() && prices[i] < prices[store.peek()]){
                 // 현재 idx - 이전의 idx
                 Integer j = store.pop();
